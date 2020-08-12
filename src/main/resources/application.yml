@@ -1,0 +1,16 @@
+server:
+  port: 7081
+
+
+logging:
+  level:
+    learning: debug
+  file:
+    name: pdfront.log
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.14.170.74:3306/yangdb
+    username: root
+    password: 1hblsqt!

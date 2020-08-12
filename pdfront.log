@@ -1,0 +1,16 @@
+2020-08-11 16:22:19.955  INFO 8032 --- [main] pers.yzh.pd.pd_front.PdFrontApplication  : Starting PdFrontApplication on DESKTOP-MKAIV33 with PID 8032 (E:\ideaProject\pd\pd_front\target\classes started by qq371 in E:\ideaProject\pd\pd_front)
+2020-08-11 16:22:19.959  INFO 8032 --- [main] pers.yzh.pd.pd_front.PdFrontApplication  : No active profile set, falling back to default profiles: default
+2020-08-11 16:22:20.886  WARN 8032 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[pers.yzh.pd.pd_front]' package. Please check your configuration.
+2020-08-11 16:22:21.412  INFO 8032 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 7081 (http)
+2020-08-11 16:22:21.424  INFO 8032 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-08-11 16:22:21.424  INFO 8032 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-11 16:22:21.526  INFO 8032 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-08-11 16:22:21.526  INFO 8032 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1487 ms
+2020-08-11 16:22:21.825  INFO 8032 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-11 16:22:21.898  INFO 8032 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-08-11 16:22:22.250  INFO 8032 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 7081 (http) with context path ''
+2020-08-11 16:22:22.266  INFO 8032 --- [main] pers.yzh.pd.pd_front.PdFrontApplication  : Started PdFrontApplication in 3.171 seconds (JVM running for 5.06)
+2020-08-11 16:23:27.336  INFO 8032 --- [http-nio-7081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-11 16:23:27.337  INFO 8032 --- [http-nio-7081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-08-11 16:23:27.347  INFO 8032 --- [http-nio-7081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2020-08-11 16:34:11.260  INFO 8032 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
