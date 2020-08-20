@@ -14,7 +14,7 @@ public class FrontController {
     @RequestMapping("/hello")
     @ResponseBody
     public String helloWorld(){
-        String str = "";
+        String str = "yy";
         return str;
     }
 }
