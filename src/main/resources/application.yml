@@ -14,3 +14,5 @@ spring:
     url: jdbc:mysql://106.14.170.74:3306/yangdb
     username: root
     password: 1hblsqt!
+  resources:
+    static-locations: classpath:/templates/

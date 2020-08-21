@@ -1,5 +1,6 @@
 package pers.yzh.pd.pd_front.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,12 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2020/8/11
  */
 @RequestMapping("/pd")
-@RestController
+@Controller
 public class FrontController {
     @RequestMapping("/hello")
     @ResponseBody
-    public String helloWorld(){
+    public String helloWorld() {
         String str = "yyyy";
         return str;
+    }
+
+    @RequestMapping("/test")
+    public String test() {
+        return "calendar";
     }
 }
