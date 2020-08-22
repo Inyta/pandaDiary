@@ -1,12 +1,14 @@
 package pers.yzh.pd.pd_front.controller;
 
-import cn.hutool.core.lang.UUID;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pers.yzh.pd.pd_front.entity.model.Result;
+import pers.yzh.pd.pd_front.entity.po.Diary;
+import pers.yzh.pd.pd_front.service.DiaryService;
+
+import java.util.List;
 
 /**
  * @author 杨子晗
@@ -15,6 +17,7 @@ import pers.yzh.pd.pd_front.entity.model.Result;
 @RequestMapping("/pd")
 @Controller
 public class FrontController {
+
     @RequestMapping("/hello")
     @ResponseBody
     public String helloWorld() {
@@ -25,9 +28,5 @@ public class FrontController {
     @RequestMapping("/test")
     public String test() {
         return "calendar";
-    }
-    @PostMapping("/queryEventsList")
-    public Result<Void> queryEventsList() {
-        return Result.success();
     }
 }
