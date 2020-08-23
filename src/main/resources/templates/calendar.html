@@ -6,13 +6,14 @@
     <title>日历排表</title>
     <link rel="stylesheet" type="text/css" href="/lib/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/lib/css/css.css">
+
 </head>
 <body style="background: #fff;">
 <!--日历-->
-<div style="width: 1200px;height: 342px;margin: 30px auto;float: left;" id="rili">
+<div style="width: 62%;height: 342px;margin: 30px auto;float: left;" id="rili">
     <div id='calendar'></div>
 </div>
-<div style="width: 700px;height: 342px;margin: 30px auto;float: right;" id="memo">
+<div style="width: 35%;height: 342px;margin: 30px auto;float: left;" id="memo">
     <div class="todo_list">
         <div class="top">
             <div class="title">
@@ -20,7 +21,7 @@
             </div>
             <div class="search">
                 <input type="text" id="todo" onkeyup="this.value=this.value.replace(/[, ]/g,'')">
-                <button id="ad  d">add</button>
+                <button id="add">add</button>
             </div>
         </div>
         <div class="head">
@@ -36,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="content">
+        <div class="todo-content">
             <!-- <div class="listtodo">
                 <div class="left">
                     123

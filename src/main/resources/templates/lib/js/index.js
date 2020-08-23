@@ -1,4 +1,8 @@
 var eventsList = [];
+var URL = {
+	queryEventsList :"/queryEventsList",
+	insertMemo: "/insertMemo"
+};
 window.onload = function () {
 	Rili();
 	w_getData();
@@ -141,7 +145,7 @@ function Rili() {
 			console.log(settings.url);
 			// if (typeof settings.url != 'undefined' && settings.url != '') {
 			$.ajax({
-				url: settings.url,
+				url: URL.queryEventsList,
 				contentType: "application/json;charset=utf-8",
 				processData: false,
 				type: "get",
@@ -309,11 +313,6 @@ function Rili() {
 
 
 //备忘录
-var url = {
-	getMemo:"../pd/getMemo",
-	insertMemo:"../pd/insertMemo",
-	deleteMemo:"../pd/deleteMemo"
-};
 //id标识便于筛选
 var count = 0;
 // 第一次加载执行
@@ -362,30 +361,31 @@ $(function () {
 			return
 		}
 		//获取时间
-		var time = w_nowTime();
-		//todoList
-		var todoList = [];
-		// 先获取下本地是否存有
-		var historyTodoList = JSON.parse(localStorage.getItem("todoList"));
-		if (historyTodoList) {
-			//本地有
-			var todo = {};
-			todo.things = $('#todo').val();
-			todo.time = time;
-			todo.id = count;
-			historyTodoList.push(todo);
-			localStorage.setItem('todoList', JSON.stringify(historyTodoList));
-			count++;
-		} else {
-			//本地無
-			var todo = {};
-			todo.things = $('#todo').val();
-			todo.time = time;
-			todo.id = count;
-			todoList.push(todo);
-			localStorage.setItem('todoList', JSON.stringify(todoList));
-			count++;
-		}
+		var time = new Date().format("yyyy-MM-dd hh:mm:ss");
+
+
+		// var dataJson = {
+		// 	"content": $('#todo').val(),
+		// 	"createTime": time
+		// };
+
+//		localStorage.setItem('todoList', JSON.stringify(todoList));
+		$.ajax({
+			url: URL.insertMemo,
+			contentType: "application/json",
+			method: "POST",
+			data:JSON.stringify({
+				"content": $('#todo').val(),
+				"createTime": time
+				}),
+			success: function (result) {
+
+			}
+		});
+		count++;
+
+
+
 		//存储完成后清空输入框
 		$('#todo').val('');
 		// 显示在任务列表
@@ -423,41 +423,25 @@ $(function () {
 		w_getData();
 	})
 	//时间函数
-	function w_nowTime() {
-		var myDate = new Date();
-		var year = myDate.getFullYear();    //获取完整的年份(4位,1970-????)
-		var month = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
-		var day = myDate.getDate();        //获取当前日(1-31)
-		var week = myDate.getDay();         //获取当前星期X(0-6,0代表星期天)
-		var hour = myDate.getHours();       //获取当前小时数(0-23)
-		var minutes = myDate.getMinutes();     //获取当前分钟数(0-59)
-		var seconds = myDate.getSeconds();     //获取当前秒数(0-59)
-		switch (week) {
-			case 0:
-				week = `日`
-				break;
-			case 1:
-				week = `一`
-				break;
-			case 2:
-				week = `二`
-				break;
-			case 3:
-				week = `三`
-				break;
-			case 4:
-				week = `四`
-				break;
-			case 5:
-				week = `五`
-				break;
-			case 6:
-				week = `六`
-				break;
-			default:
+	Date.prototype.format = function (format) {
+		var args = {
+			"M+": this.getMonth() + 1,
+			"d+": this.getDate(),
+			"h+": this.getHours(),
+			"m+": this.getMinutes(),
+			"s+": this.getSeconds(),
+			"q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
+			"S": this.getMilliseconds()
+		};
+		if (/(y+)/.test(format))
+			format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+		for (var i in args) {
+			var n = args[i];
+			if (new RegExp("(" + i + ")").test(format))
+				format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
 		}
-		return `${year}年${w_zero(month)}月${w_zero(day)}日${w_zero(hour)}:${w_zero(minutes)}:${w_zero(seconds)}星期${week}`
-	}
+		return format;
+	};
 	//不够补零
 	function w_zero(num) {
 		if (num < 10) return "0" + num; else return num;

@@ -1,12 +1,12 @@
 
 /*日历*/
 .calendar *{box-sizing:border-box;font-size:14px}
-.calendar-sm{cursor:default;width:800px;height:370px}
-.calendar{cursor:default;width:1200px;height:342px;margin:30px auto}
+.calendar-sm{cursor:default;width:47%;height:370px}
+.calendar{cursor:default;width:100%;height:342px;margin:30px auto}
 .calendar-sm .c-pad-top{padding-top:2%}
-.c-event-top{width: 190px;height:342px;background: #181f28;float: left;position: relative;}
+.c-event-top{width: 15%;height:342px;background: #181f28;float: left;position: relative;}
 /*.calendar .c-pad-top{padding-top:3%}*/
-.c-grid{height:342px;width:440px;float:left;background: #fff;padding:0 25px;color: #bbc3cd;}
+.c-grid{height:342px;width:40%;float:left;background: #fff;padding:0 25px;color: #bbc3cd;}
 .c-day{border-radius: 3px;width:45px;height:45px;float:left;text-align:center;margin: 5px 5px 0px 5px;color: #bbc3cd;line-height: 45px;}
 .c-day-previous-month{width:45px;height:45px;float:left;text-align:center;color:gray;margin: 5px 5px 0px 5px;}
 .c-day-next-month{width:45px;height:45px;float:left;text-align:center;color:gray;margin: 5px 5px 0px 5px;}
@@ -22,11 +22,11 @@
 .c-event{background-color:#00aeff;color:#fff;font-weight:700;cursor:pointer;position:relative;overflow:hidden; }
 /*.c-event:before{content:"课";color:#FFF;position:absolute;top:0;left:0;z-index:1}
 .c-event:after{content:" ";position:absolute;width:50px;height:50px;background:#2FA8EC;left:-25px;top:-25px;transform:rotate(45deg);-ms-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);-moz-transform:rotate(45deg);z-index:0}*/
-.c-event-grid{margin-left:1px;height:inherit;width:565px;float:left;}
+.c-event-grid{padding-left:1px;height:inherit;width:45%;float:left;}
 .c-grid-title{float:left;color:#fff}
 /*.c-event-title{width:100%;height:12%;text-align:center;font-weight:700;background-color:#879bbc;color:#fff}*/
 .c-event-body{height:342px;overflow: hidden;}
-.c-event-list{padding:7 0 0 0;overflow:auto;height:95%;position:relative; overflow-y: scroll;overflow-x: hidden;}
+.c-event-list{padding:7px 0 0 0;overflow:auto;height:95%;position:relative; overflow-y: scroll;overflow-x: hidden;}
 .c-event-list::-webkit-scrollbar {display:none}
 .c-event-item>.title{font-weight:700}
 .c-event-item>div{text-overflow:ellipsis;width:inherit;overflow:hidden;white-space:nowrap}
@@ -39,18 +39,18 @@
 .title{float: left;}
 .description{float: left;}
 
-.todo_list {width: 700px;height: 342px;margin: 30px auto;}
+.todo_list {width: 100%;height: 342px;margin: 30px auto;}
 .top {height: 100px; /* outline: red solid 1px; */}
-.title {text-align: center;}
-.search {text-align: center;}
-.search input {margin: 10px;width: 650px;height: 30px;padding-left: 5px;}
+.title {text-align: left;}
+.search {text-align: left;}
+.search input {margin: 10px;width: 50%;height: 30px;padding-left: 5px;}
 .search button {width: 60px;height: 30px;background-color: #428bca;border-color: #357ebd;color: #fff;border-radius: 5px;border: none;}
 .head {height: 50px;}
-.content {height: 600px; /* outline: yellow solid 1px; */}
-.list {margin-top: 10px;height: 30px;display: flex;text-align: center;}
+.todo-content {height: 600px; /* outline: yellow solid 1px; */}
+.list {margin-top: 10px;height: 30px;display: flex;text-align: left;}
 .left {width: 50%;text-indent: 40px;}
 .time {width: 30%;}
-.operation {width: 20%;text-align: center;}
+.operation {width: 20%;text-align: left;}
 .operation button {padding: 5px;margin-left: 5px;background-color: #428bca;border-color: #357ebd;color: #fff;border-radius: 5px;border: none;}
 .listtodo {margin: 10px 0;display: flex;}
 .line {text-decoration: line-through;color: red;}
