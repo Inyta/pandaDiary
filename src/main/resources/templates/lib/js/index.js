@@ -1,6 +1,7 @@
 var eventsList = [];
 window.onload = function () {
-	Rili()
+	Rili();
+	w_getData();
 }
 
 //日历
@@ -305,3 +306,167 @@ function Rili() {
 		events: []
 	};
 }(jQuery));
+
+
+//备忘录
+var url = {
+	getMemo:"../pd/getMemo",
+	insertMemo:"../pd/insertMemo",
+	deleteMemo:"../pd/deleteMemo"
+};
+//id标识便于筛选
+var count = 0;
+// 第一次加载执行
+// window.onload = function () {
+// 	w_getData();
+// }
+// localStorage 存储在本地，容量为5M或者更大，不会在请求时候携带传递，在所有同源窗口中共享，数据一直有效，除非人为删除，可作为长期数据。
+//设置：
+// localStorage.setItem("dat", "456");
+//获取：
+// localStorage.getItem("dat");
+//删除
+// localStorage.removeItem("dat");
+//调取本地存储展示在页面 w_前缀是为了方便智能查找
+function w_getData() {
+	var data = JSON.parse(localStorage.getItem('todoList'));
+	var arr = [];
+	//没有直接return掉
+	if (data == null) {
+		return
+	}
+	$('.content').html('');
+	for (var i = 0; i < data.length; i++) {
+		if (data[i].line == true) {
+			var html = `<div class="listtodo line" listid="${data[i].id}"><div class="left">${data[i].things}</div><div class="time">${data[i].time}</div><div class="operation"><button id="done">done</button><button id="delete">delete</button></div></div>`;
+			// $('.content').append(html);
+		} else {
+			var html = `<div class="listtodo" listid="${data[i].id}"><div class="left">${data[i].things}</div><div class="time">${data[i].time}</div><div class="operation"><button id="done">done</button><button id="delete">delete</button></div></div>`;
+		}
+		// var html = `<div class="listtodo" listid="${data[i].id}"><div class="left">${data[i].things}</div><div class="time">${data[i].time}</div><div class="operation"><button id="done">done</button><button id="delete">delete</button></div></div>`;
+		$('.content').append(html);
+		if (data[i].id != null) {
+			arr.push(data[i].id);
+		}
+	}
+	if (arr.length > 0) {
+		var max = Math.max.apply(null, arr);
+		count = max + 1;
+	}
+}
+$(function () {
+	//添加事件
+	$('#add').click(function () {
+		// 非空验证
+		if ($('#todo').val() == '') {
+			return
+		}
+		//获取时间
+		var time = w_nowTime();
+		//todoList
+		var todoList = [];
+		// 先获取下本地是否存有
+		var historyTodoList = JSON.parse(localStorage.getItem("todoList"));
+		if (historyTodoList) {
+			//本地有
+			var todo = {};
+			todo.things = $('#todo').val();
+			todo.time = time;
+			todo.id = count;
+			historyTodoList.push(todo);
+			localStorage.setItem('todoList', JSON.stringify(historyTodoList));
+			count++;
+		} else {
+			//本地無
+			var todo = {};
+			todo.things = $('#todo').val();
+			todo.time = time;
+			todo.id = count;
+			todoList.push(todo);
+			localStorage.setItem('todoList', JSON.stringify(todoList));
+			count++;
+		}
+		//存储完成后清空输入框
+		$('#todo').val('');
+		// 显示在任务列表
+		w_getData();
+	})
+	// 已完成直接划掉(采用事件委托的方式，方式新增html元素找不到事件)
+	$(document).on('click', '#done', function () {
+		$(this).parent().parent().addClass('line')
+		let listids = $(this).parent().parent().attr('listid');
+		let datas = JSON.parse(localStorage.getItem('todoList'));
+		let resIndexs = datas.findIndex(v => {
+			return v.id === parseInt(listids);
+		})
+		datas[resIndexs].line = true;
+		localStorage.setItem('todoList', JSON.stringify(datas));
+
+	})
+	//delete删除事件(采用事件委托的方式，方式新增html元素找不到事件)
+	$(document).on('click', '#delete', function () {
+		let listid = $(this).parent().parent().attr('listid');
+		let data = JSON.parse(localStorage.getItem('todoList'));
+		// ES6 提供了两个数组的实例查找相关的方法
+		// ① Array.find
+		// ② Array.findIndex
+		let res = data.find(v => {
+			return v.id === parseInt(listid);
+		})
+		let resIndex = data.findIndex(v => {
+			return v.id === parseInt(listid);
+		})
+		console.log(res, resIndex)
+		data.splice(resIndex, 1);
+		//删除后存储
+		localStorage.setItem('todoList', JSON.stringify(data));
+		w_getData();
+	})
+	//时间函数
+	function w_nowTime() {
+		var myDate = new Date();
+		var year = myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+		var month = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
+		var day = myDate.getDate();        //获取当前日(1-31)
+		var week = myDate.getDay();         //获取当前星期X(0-6,0代表星期天)
+		var hour = myDate.getHours();       //获取当前小时数(0-23)
+		var minutes = myDate.getMinutes();     //获取当前分钟数(0-59)
+		var seconds = myDate.getSeconds();     //获取当前秒数(0-59)
+		switch (week) {
+			case 0:
+				week = `日`
+				break;
+			case 1:
+				week = `一`
+				break;
+			case 2:
+				week = `二`
+				break;
+			case 3:
+				week = `三`
+				break;
+			case 4:
+				week = `四`
+				break;
+			case 5:
+				week = `五`
+				break;
+			case 6:
+				week = `六`
+				break;
+			default:
+		}
+		return `${year}年${w_zero(month)}月${w_zero(day)}日${w_zero(hour)}:${w_zero(minutes)}:${w_zero(seconds)}星期${week}`
+	}
+	//不够补零
+	function w_zero(num) {
+		if (num < 10) return "0" + num; else return num;
+	}
+})
+// enter添加事件
+$('#todo').keydown(function (event) {
+	var e = event || window.event;
+	if (e.keyCode == 13) {
+		$('#add').click();
+	}
+});

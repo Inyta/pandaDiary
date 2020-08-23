@@ -9,8 +9,48 @@
 </head>
 <body style="background: #fff;">
 <!--日历-->
-<div style="width: 1200px;height: 342px;margin: 30px auto;" id="rili">
+<div style="width: 1200px;height: 342px;margin: 30px auto;float: left;" id="rili">
     <div id='calendar'></div>
+</div>
+<div style="width: 700px;height: 342px;margin: 30px auto;float: right;" id="memo">
+    <div class="todo_list">
+        <div class="top">
+            <div class="title">
+                <h2>TODOLIST</h2>
+            </div>
+            <div class="search">
+                <input type="text" id="todo" onkeyup="this.value=this.value.replace(/[, ]/g,'')">
+                <button id="ad  d">add</button>
+            </div>
+        </div>
+        <div class="head">
+            <div class="list">
+                <div class="left">
+                    <h3>need to be dealt with</h3>
+                </div>
+                <div class="time">
+                    <h3>time</h3>
+                </div>
+                <div class="operation">
+                    <h3>operation</h3>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <!-- <div class="listtodo">
+                <div class="left">
+                    123
+                </div>
+                <div class="time">
+                    2019.15.26
+                </div>
+                <div class="operation">
+                    <button>done</button>
+                    <button>delete</button>
+                </div>
+            </div> -->
+        </div>
+    </div>
 </div>
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="/lib/js/index.js" ></script>

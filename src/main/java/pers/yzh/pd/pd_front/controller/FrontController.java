@@ -29,4 +29,8 @@ public class FrontController {
     public String test() {
         return "calendar";
     }
+    @RequestMapping("/test1")
+    public String test1() {
+        return "index";
+    }
 }

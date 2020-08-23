@@ -39,4 +39,18 @@
 .title{float: left;}
 .description{float: left;}
 
-
+.todo_list {width: 700px;height: 342px;margin: 30px auto;}
+.top {height: 100px; /* outline: red solid 1px; */}
+.title {text-align: center;}
+.search {text-align: center;}
+.search input {margin: 10px;width: 650px;height: 30px;padding-left: 5px;}
+.search button {width: 60px;height: 30px;background-color: #428bca;border-color: #357ebd;color: #fff;border-radius: 5px;border: none;}
+.head {height: 50px;}
+.content {height: 600px; /* outline: yellow solid 1px; */}
+.list {margin-top: 10px;height: 30px;display: flex;text-align: center;}
+.left {width: 50%;text-indent: 40px;}
+.time {width: 30%;}
+.operation {width: 20%;text-align: center;}
+.operation button {padding: 5px;margin-left: 5px;background-color: #428bca;border-color: #357ebd;color: #fff;border-radius: 5px;border: none;}
+.listtodo {margin: 10px 0;display: flex;}
+.line {text-decoration: line-through;color: red;}
