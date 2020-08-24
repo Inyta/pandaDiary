@@ -417,6 +417,7 @@ $(function () {
             success: function (result) {
                 // 显示在任务列表
                 w_getData();
+                Rili();
             }
         });
 
