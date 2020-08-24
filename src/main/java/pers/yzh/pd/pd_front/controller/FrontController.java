@@ -14,7 +14,7 @@ import java.util.List;
  * @author 杨子晗
  * @create 2020/8/11
  */
-@RequestMapping("/pd")
+@RequestMapping("/diary")
 @Controller
 public class FrontController {
 
@@ -27,7 +27,7 @@ public class FrontController {
 
     @RequestMapping("/test")
     public String test() {
-        return "calendar";
+        return "diary/calendar";
     }
     @RequestMapping("/test1")
     public String test1() {

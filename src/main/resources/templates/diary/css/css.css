@@ -40,14 +40,14 @@
 .description{float: left;}
 
 .todo_list {width: 100%;height: 342px;margin: 30px auto;}
-.top {height: 100px; /* outline: red solid 1px; */}
+.top-title {height: 50px; /* outline: red solid 1px; */}
 .title {text-align: left;}
 .search {text-align: left;}
-.search input {margin: 10px;width: 50%;height: 30px;padding-left: 5px;}
-.search button {width: 60px;height: 30px;background-color: #428bca;border-color: #357ebd;color: #fff;border-radius: 5px;border: none;}
+.search input {margin: 17px 0 0 20px;width: 70%;height: 30px;padding-left: 5px;}
+.search button {margin-left: 10px; width: 60px;height: 30px;background-color: #428bca;border-color: #357ebd;color: #fff;border-radius: 5px;border: none;}
 .head {height: 50px;}
 .todo-content {height: 600px; /* outline: yellow solid 1px; */}
-.list {margin-top: 10px;height: 30px;display: flex;text-align: left;}
+.list {display: flex;}
 .left {width: 50%;text-indent: 40px;}
 .time {width: 30%;}
 .operation {width: 20%;text-align: left;}

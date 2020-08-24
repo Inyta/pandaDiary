@@ -14,5 +14,9 @@ spring:
     url: jdbc:mysql://106.14.170.74:3306/yangdb?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 1hblsqt!
+    hikari:
+      max-lifetime: 500000
+      minimum-idle: 3
+      maximum-pool-size: 10
   resources:
     static-locations: classpath:/templates/

@@ -16,7 +16,15 @@ import java.util.Date;
 @Getter
 @Setter
 public class DiaryDTO {
+    private String id;
+
     private String content;
+
+    private String status;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
 }
