@@ -5,44 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>日历排表</title>
     <link rel="stylesheet" type="text/css" href="./css/css.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/modules/layer/default/layer.css">
 
 </head>
-<body style="background: #fff;">
-<!--日历-->
-<div style="width: 62%;height: 342px;margin: 30px auto;float: left;" id="rili">
-    <div id='calendar'></div>
-</div>
-<div style="width: 35%;height: 342px;margin: 30px auto;float: left;" id="memo">
-    <div class="todo_list">
-        <div class="top">
-            <div class="title">
-                <h2>备忘</h2>
-            </div>
-            <div class="search">
-                <input type="text" id="todo" onkeyup="this.value=this.value.replace(/[, ]/g,'')">
-                <button id="add">添加</button>
-            </div>
-        </div>
-        <div class="head">
-            <div class="list">
-                <div class="left">
-                    <h3>事项</h3>
-                </div>
-                <div class="time">
-                    <h3>时间</h3>
-                </div>
-                <div class="operation">
-                    <h3>操作</h3>
-                </div>
+<body class="layui-bg-gray" style="background: #fff;">
+<div class="layui-row">
+    <ul class="layui-nav  layui-col-md12 layui-col-xs12" lay-filter="">
+        <li class="layui-nav-item layui-this"><a href="">日志</a></li>
+    </ul>
+
+
+    <!--日历-->
+
+    <div class="layui-col-md8 layui-col-xs12" style="height: 600px;padding: 30px;float: left" id="rili">
+        <div class="layui-card ">
+            <div class="layui-card-header">日志</div>
+            <div class="layui-card-body">
+                <div id='calendar'></div>
             </div>
         </div>
-        <div class="todo-content">
+
+    </div>
+
+    <div class="layui-col-md4 layui-col-xs12" style="height: 600px;padding: 30px;float: left" id="memo">
+        <div class="layui-card ">
+            <div class="layui-card-header">备忘</div>
+            <div class="todo_list layui-card-body">
+                <div class="todo-search">
+                    <input type="text" style="width: 80%;" name="title" placeholder="请输入内容">
+                    <button class="layui-btn ">添加</button>
+                </div>
+                <div class="todo-content" style="width: 90%;">
+<!--                <table id="todo-content" lay-filter="todo-content"></table>-->
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <script src="../lib/js/jquery-2.1.1.min.js"></script>
+<script src="../lib/js/layui.js"></script>
+<!--<script src="../lib/js/lay/modules/layui.js"></script>-->
 <script type="text/javascript" src="./js/index.js"></script>
-<script>
-</script>
+
+
 </body>
 </html>

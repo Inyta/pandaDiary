@@ -9,6 +9,7 @@ var URL = {
 window.onload = function () {
     Rili();
     w_getData();
+   // tableStyle();
 }
 
 //日历
@@ -318,21 +319,10 @@ function Rili() {
 
 
 //备忘录
-//id标识便于筛选
-var count = 0;
-// 第一次加载执行
-// window.onload = function () {
-// 	w_getData();
-// }
-// localStorage 存储在本地，容量为5M或者更大，不会在请求时候携带传递，在所有同源窗口中共享，数据一直有效，除非人为删除，可作为长期数据。
-//设置：
-// localStorage.setItem("dat", "456");
-//获取：
-// localStorage.getItem("dat");
-//删除
-// localStorage.removeItem("dat");
+
 //调取本地存储展示在页面 w_前缀是为了方便智能查找
 function w_getData() {
+    var memo;
     var data = [];
     $.ajax({
         url: URL.queryMemoList,
@@ -343,31 +333,62 @@ function w_getData() {
         success: function (result) {
             data = result.result;
             console.log(data);
-            var arr = [];
             //没有直接return掉
             if (data == null) {
                 return
             }
             $('.todo-content').html('');
+            var html = `<table class="layui-table " lay-even lay-skin="nob" lay-filter="memolist"  >
+                        <colgroup>
+                        <col width= "200">
+                        <col width= "50">
+                        <col width= "80">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                        <th lay-data="{field:'content'}">事项</th>
+                        <th lay-data="{field:'createTime'}">时间</th>
+                        <th lay-data="{field:'do'}">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>`
             for (var i = 0; i < data.length; i++) {
-                if (data[i].line == true) {
-                    var html = `<div class="listtodo line" listid="${data[i].id}" listtime="${data[i].time}"><div class="left">${data[i].content}</div><div class="time">${data[i].createTime}</div><div class="operation"><button id="update">修改</button><button id="done">完成</button></div></div>`;
-                    // $('.content').append(html);
-                } else {
-                    var html = `<div class="listtodo" listid="${data[i].id}"><div class="left">${data[i].content}</div><div class="time">${data[i].createTime}</div><div class="operation"><button id="update">修改</button><button id="done">完成</button></div></div>`;
-                }
-                // var html = `<div class="listtodo" listid="${data[i].id}"><div class="left">${data[i].things}</div><div class="time">${data[i].time}</div><div class="operation"><button id="done">done</button><button id="delete">delete</button></div></div>`;
-                $('.todo-content').append(html);
-                if (data[i].id != null) {
-                    arr.push(data[i].id);
-                }
+
+                html = html + `<tr  listid="${data[i].id}"><td>${data[i].content}</td><td>${data[i].createTime}</td><td><button id="update" class="layui-btn layui-btn-xs layui-btn-warm">修改</button><button id="done" class="layui-btn layui-btn-xs layui-btn-danger">完成</button></td></tr>`;
             }
-            if (arr.length > 0) {
-                var max = Math.max.apply(null, arr);
-                count = max + 1;
-            }
+            html = html + '</tbody></table>';
+            $('.todo-content').append(html);
+
         }
     });
+    //    layui.use('table', function(){
+    //        var table = layui.table;
+    //
+    //        //第一个实例
+    //        table.render({
+    //            elem: '#todo-content'
+    //            ,height: 312
+    //            ,url: URL.queryMemoList //数据接口
+    //            ,page: false //开启分页
+    //            ,parseData: function(res){ //res 即为原始返回的数据
+    //                return {
+    //                    "code": res.status, //解析接口状态
+    //                    "msg": res.message, //解析提示文本
+    //                    "count": (res.result).length, //解析数据长度
+    //                    "data": res.result.item //解析数据列表
+    //                };
+    //            }
+    //            ,cols: [[ //表头
+    //                ,{field: 'content', title: '事项', width:80}
+    //                ,{field: 'createTime', title: '时间', width:80, sort: true}
+    //                ,{fixed: 'right', title: '操作', width:150, align:'center', toolbar: '#todo-content-bar'}
+    //                ,{field: 'id', title: 'id', width:80, fixed: 'left',hide: true}
+    //                ,{field: 'updateTime',hide: true }
+    //                ,{field: 'status', hide: true }
+    //            ]]
+    //        });
+    //
+    //    });
 }
 
 $(function () {
@@ -393,6 +414,7 @@ $(function () {
                 $('#todo').val('');
                 // 显示在任务列表
                 w_getData();
+               // tableStyle();
             }
         });
     })
@@ -417,6 +439,7 @@ $(function () {
             success: function (result) {
                 // 显示在任务列表
                 w_getData();
+               // tableStyle();
                 Rili();
             }
         });
@@ -427,7 +450,7 @@ $(function () {
         let listid = $(this).parent().parent().attr('listid');
         var content = prompt("请输入修改内容");
         var updateTime = new Date().format("yyyy-MM-dd hh:mm:ss");
-        if (content!=null && content!=""){
+        if (content != null && content != "") {
             $.ajax({
                 url: URL.updateMemoContentById,
                 contentType: "application/json",
@@ -439,6 +462,7 @@ $(function () {
                 }),
                 success: function (result) {
                     w_getData();
+                    //tableStyle();
                 }
             });
         }
@@ -469,6 +493,19 @@ $(function () {
         if (num < 10) return "0" + num; else return num;
     }
 })
+function tableStyle() {
+    layui.use('table', function(){
+        var table = layui.table;
+
+        var $ = layui.$, active = {
+            parseTable: function(){
+                table.init('memolist', { //转化静态表格
+                    height: 'full-500'
+                });
+            }
+        };
+    });
+}
 // enter添加事件
 $('#todo').keydown(function (event) {
     var e = event || window.event;

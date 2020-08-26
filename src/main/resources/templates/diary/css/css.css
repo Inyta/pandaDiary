@@ -2,7 +2,7 @@
 /*日历*/
 .calendar *{box-sizing:border-box;font-size:14px}
 .calendar-sm{cursor:default;width:47%;height:370px}
-.calendar{cursor:default;width:100%;height:342px;margin:30px auto}
+.calendar{cursor:default;width:100%;height:442px;margin:30px auto}
 .calendar-sm .c-pad-top{padding-top:2%}
 .c-event-top{width: 15%;height:342px;background: #181f28;float: left;position: relative;}
 /*.calendar .c-pad-top{padding-top:3%}*/
@@ -39,18 +39,7 @@
 .title{float: left;}
 .description{float: left;}
 
-.todo_list {width: 100%;height: 342px;margin: 30px auto;}
-.top-title {height: 50px; /* outline: red solid 1px; */}
-.title {text-align: left;}
-.search {text-align: left;}
-.search input {margin: 17px 0 0 20px;width: 70%;height: 30px;padding-left: 5px;}
-.search button {margin-left: 10px; width: 60px;height: 30px;background-color: #428bca;border-color: #357ebd;color: #fff;border-radius: 5px;border: none;}
-.head {height: 50px;}
-.todo-content {height: 600px; /* outline: yellow solid 1px; */}
-.list {display: flex;}
-.left {width: 50%;text-indent: 40px;}
-.time {width: 30%;}
-.operation {width: 20%;text-align: left;}
-.operation button {padding: 5px;margin-left: 5px;background-color: #428bca;border-color: #357ebd;color: #fff;border-radius: 5px;border: none;}
-.listtodo {margin: 10px 0;display: flex;}
-.line {text-decoration: line-through;color: red;}
+.todo_list {width: 100%;height: 100%;margin: 20px auto;}
+.todo-title {text-align: left;}
+
+.todo-search input {padding-left: 10px;height: 38px;line-height: 1.3;line-height: 38px;border-width: 1px;border-style: solid;background-color: #fff;border-radius: 2px;margin-top: 5px;margin-right: 10px}
