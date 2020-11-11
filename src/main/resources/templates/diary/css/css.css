@@ -15,7 +15,7 @@
 .c-previous{width:24px;height:24px;text-align:left;cursor:pointer;text-align: center;background: url(../images/zuo.png);position: absolute;bottom:15px;right: 50px;}
 .c-month{width:100%;height:inherit;text-align:center;}
 .c-month-top{font-size: 22px;margin-top: 90px;}
-.c-month-center{font-size: 92px;color: #fff;}
+.c-month-center{font-size: 92px;color: #fff;margin-top: 35px;}
 .c-month-bottom{font-size: 22px;height: 30px}
 .c-nav-btn-over{}
 .c-today{color:white;background: -webkit-linear-gradient(left, #ffc74e , #ff9211); /* Safari 5.1 - 6.0 */background: -o-linear-gradient(right, #ffc74e , #ff9211); /* Opera 11.1 - 12.0 */background: -moz-linear-gradient(right, #ffc74e , #ff9211); /* Firefox 3.6 - 15 */background: linear-gradient(to right, #ffc74e , #ff9211)}

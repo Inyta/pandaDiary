@@ -24,8 +24,13 @@ public class Diary {
     private String content;
 
     private String status;
+
+    private String userName;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date finishTime;
 }

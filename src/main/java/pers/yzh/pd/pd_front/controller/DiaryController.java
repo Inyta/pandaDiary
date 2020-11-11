@@ -19,6 +19,7 @@ import java.util.List;
  * @Author: zhangwei
  * @Date: 2020/8/22 13:05
  */
+@RequestMapping("/diary")
 @RestController
 public class DiaryController {
 
@@ -26,29 +27,34 @@ public class DiaryController {
     private DiaryService diaryService;
 
     @GetMapping("/queryEventsList")
-    public Result<List<Diary>> queryEventsList() {
+    public Result<List<Diary>> queryEventsList(
+            @CookieValue(value = "pd_userName", defaultValue = "null") String userName) {
         QueryWrapper<Diary> queryWrapper = new QueryWrapper();
-        queryWrapper.eq("status", 1).orderByDesc("create_time");
+        queryWrapper.eq("status", 1).eq("user_name",userName).orderByDesc("finish_time");
         List<Diary> list = diaryService.list(queryWrapper);
         return Result.success(list);
     }
 
     @GetMapping("/queryMemoList")
-    public Result<List<Diary>> queryMemoList() {
+    public Result<List<Diary>> queryMemoList(
+            @CookieValue(value = "pd_userName", defaultValue = "null") String userName) {
         QueryWrapper<Diary> queryWrapper = new QueryWrapper();
-        queryWrapper.eq("status", 0).orderByDesc("create_time");
+        queryWrapper.eq("status", 0).eq("user_name",userName).orderByDesc("create_time");
         List<Diary> list = diaryService.list(queryWrapper);
         return Result.success(list);
     }
 
     @PostMapping("/insertMemo")
-    public Result<Void> insertMemo(@RequestBody DiaryDTO diaryDTO) {
+    public Result<Void> insertMemo(
+            @RequestBody DiaryDTO diaryDTO,
+            @CookieValue(value = "pd_userName", defaultValue = "null") String userName) {
         Diary diary = new Diary();
         BeanUtil.copyProperties(diaryDTO, diary);
         String id = "memo" + UUID.randomUUID().toString();
         diary.setId(id);
         diary.setUpdateTime(new Date());
         diary.setStatus("0");
+        diary.setUserName(userName);
         diaryService.save(diary);
         return Result.success();
     }
@@ -58,7 +64,7 @@ public class DiaryController {
         Diary diary = new Diary();
         BeanUtil.copyProperties(diaryDTO, diary);
         UpdateWrapper<Diary> updateWrapper = new UpdateWrapper();
-        updateWrapper.set("status", diary.getStatus()).set("update_time", diary.getUpdateTime()).eq("id", diary.getId());
+        updateWrapper.set("status", diary.getStatus()).set("finish_time", new Date()).set("update_time", diary.getUpdateTime()).eq("id", diary.getId());
         diaryService.update(updateWrapper);
         return Result.success();
     }

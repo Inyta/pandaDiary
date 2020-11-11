@@ -1,12 +1,15 @@
 var eventsList = [];
 var URL = {
-    queryEventsList: "/queryEventsList",
-    queryMemoList: "/queryMemoList",
-    insertMemo: "/insertMemo",
-    updateMemoStatusById: "/updateMemoStatusById",
-    updateMemoContentById: "/updateMemoContentById"
+    queryEventsList: "/diary/queryEventsList",
+    queryMemoList: "/diary/queryMemoList",
+    insertMemo: "/diary/insertMemo",
+    updateMemoStatusById: "/diary/updateMemoStatusById",
+    updateMemoContentById: "/diary/updateMemoContentById"
 };
 window.onload = function () {
+    if($.cookie('pd_userName') == null){
+        window.location.replace("../front/index.html");
+    }
     Rili();
     w_getData();
    // tableStyle();
@@ -223,7 +226,7 @@ function Rili() {
                         cDay.addClass('c-today');
                     }
                     for (var j = 0; j < settings.events.length; j++) {
-                        var d = strToDate(settings.events[j].createTime);
+                        var d = strToDate(settings.events[j].finishTime);
                         // var d = settings.events[j].createTime;
                         if (d.getDate() == day && (d.getMonth()) == dMonth && d.getFullYear() == dYear) {
                             cDay.addClass('c-event').attr('data-event-day', d.getDate());
@@ -246,14 +249,14 @@ function Rili() {
             var eventList = $('<div/>').addClass('c-event-list');
             for (var i = 0; i < settings.events.length; i++) {
                 // console.log(d)
-                var d = strToDate(settings.events[i].createTime);
+                var d = strToDate(settings.events[i].finishTime);
                 // var d = settings.events[j].createTime;
                 if ((d.getMonth()) == dMonth && d.getFullYear() == dYear) {
                     var date = lpad(d.getMonth() + 1, 2) + '/' + lpad(d.getDate(), 2) + ' ' + lpad(d.getHours(), 2) + ':' + lpad(d.getMinutes(), 2);
                     var item = $('<div/>').addClass('c-event-item');
                     var a = $('<a/>').addClass('c-event-item-a').attr('href', settings.events[i].href);
                     // var title = $('<div/>').addClass('title').html(date + '  ' + settings.events[i].title);
-                    var content = $('<div/>').addClass('content').html(settings.events[i].content);
+                    var content = $('<div/>').addClass('content').html(settings.events[i].content+'---创建时间:'+ settings.events[i].createTime);
                     item.attr('data-event-day', d.getDate());
                     item.on('mouseover', mouseOverItem).on('mouseleave', mouseLeaveItem).on('click', clickitem);
                     item.append(a);
@@ -266,7 +269,7 @@ function Rili() {
                     var item = $('<div/>').addClass('c-event-item');
                     var a = $('<a/>').addClass('c-event-item-a').attr('href', settings.events[i].href);
                     // var title = $('<div/>').addClass('title').html(date + '  ' + settings.events[i].title);
-                    var content = $('<div/>').addClass('content').html(settings.events[i].content);
+                    var content = $('<div/>').addClass('content').html(settings.events[i].content+'---创建时间:'+ settings.events[i].createTime);
                     item.attr('data-event-day', d.getDate());
                     item.on('mouseover', mouseOverItem).on('mouseleave', mouseLeaveItem).on('click', clickitem);
                     item.append(a);
@@ -340,9 +343,9 @@ function w_getData() {
             $('.todo-content').html('');
             var html = `<table class="layui-table " lay-even lay-skin="nob" lay-filter="memolist"  >
                         <colgroup>
-                        <col width= "200">
-                        <col width= "50">
-                        <col width= "80">
+                        <col>
+                        <col width= "120">
+                        <col width= "140">
                         </colgroup>
                         <thead>
                         <tr>
