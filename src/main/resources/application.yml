@@ -20,3 +20,5 @@ spring:
       maximum-pool-size: 10
   resources:
     static-locations: classpath:/templates/
+
+#测试20210322
